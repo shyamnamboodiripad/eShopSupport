@@ -30,7 +30,7 @@ namespace eShopSupport.EvaluationTests
         {
             backend = await DevToolBackendClient.GetDevToolStaffBackendClientAsync(
                 identityServerHttpClient: new HttpClient { BaseAddress = new Uri("https://localhost:7275/") },
-                backendHttpClient: new HttpClient { BaseAddress = new Uri("https://localhost:7223/") });
+                backendHttpClient: new HttpClient { BaseAddress = new Uri("https://localhost:7223/"), Timeout = TimeSpan.FromMinutes(10) });
             chatCompletion = new AzureOpenAIClient(new Uri(Settings.Current.Endpoint), new DefaultAzureCredential())
                 .AsChatClient(Settings.Current.DeploymentName);
         }
